@@ -1,0 +1,67 @@
+.matchcard-list {
+  background-color: #1e293b;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  height: 15%;
+  width: 48%;
+}
+.matchcard-logo {
+  height: 60px;
+  width: 60px;
+}
+.matchcard-title {
+  color: white;
+  font-family: Bree serif;
+  font-size: 16px;
+  text-align: center;
+}
+.matchcard-heading {
+  color: white;
+  font-family: Bree serif;
+  font-size: 10px;
+  width: 140px;
+  text-align: center;
+}
+
+.match-lost {
+  color: #e31a1a;
+  font-family: Bree serif;
+  font-size: 18px;
+  text-align: center;
+}
+.match-won {
+  color: #18ed66;
+  font-family: Bree serif;
+  font-size: 18px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .matchcard-list {
+    height: 20%;
+    width: 32%;
+  }
+  .matchcard-logo {
+    height: 120px;
+    width: 120px;
+  }
+  .matchcard-title {
+    font-size: 28px;
+    width: 150px;
+  }
+  .matchcard-heading {
+    font-size: 15px;
+    width: 180px;
+  }
+  .match-lost {
+    font-size: 26px;
+  }
+  .match-won {
+    font-size: 26px;
+  }
+}

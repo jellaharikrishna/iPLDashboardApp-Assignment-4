@@ -23,6 +23,13 @@
   background: linear-gradient(#4f5db0, #1e293b);
 }
 
+.ipl-team-match-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .team-details-container {
   height: 100vh;
   display: flex;
@@ -31,6 +38,23 @@
   padding: 10px;
   overflow: auto;
 }
+
+.team-match-back-btn-link {
+  align-self: flex-start;
+  height: 35px;
+  width: 60px;
+  margin: 10px;
+}
+
+.team-match-back-btn {
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-family: Roboto;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .teambanner-image {
   width: 100%;
   margin: 10px;
@@ -54,6 +78,27 @@
 
 @media (min-width: 768px) {
   .latestmatches-heading {
+    font-size: 28px;
+  }
+}
+
+.stats-container {
+  width: 100%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stats-heading {
+  color: white;
+  font-family: Bree Serif;
+  align-self: flex-start;
+  margin: 10px;
+}
+
+
+@media (min-width: 768px) {
+  .stats-heading {
     font-size: 28px;
   }
 }

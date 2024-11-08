@@ -2,18 +2,6 @@
   text-decoration: none;
 }
 
-/*
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #ffffff33;
-  border-radius: 10px;
-  height: 150px;
-  width: 300px;
-  margin: 10px;
-  border: 2px solid white; /* remove */
-
 .team-card {
   display: flex;
   justify-content: space-around;
@@ -29,7 +17,6 @@
 .team-image {
   height: 50px;
   width: 50px;
-  /*border: 2px solid yellow; /* remove */
 }
 .team-name {
   color: white;
@@ -39,10 +26,10 @@
   /*border: 2px solid yellowgreen; /* remove */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 586px) {
   .team-card {
     height: 150px;
-    width: 450px;
+    min-width: 250px;
   }
   .team-image {
     height: 80px;

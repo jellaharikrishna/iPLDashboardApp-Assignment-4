@@ -25,25 +25,29 @@ class Home extends Component {
 
   render() {
     const {iplTeamsList, isLoading} = this.state
-    return isLoading ? (
-      <div data-testid="loader">
-        <Loader type="Oval" color="#ffffff" height={50} width={50} />
-      </div>
-    ) : (
-      <div className="app-container">
-        <div className="ipl-dashboard-card">
-          <img
-            className="ipl-logo"
-            src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
-            alt="ipl logo"
-          />
-          <h1 className="ipl-heading">IPL Dashboard</h1>
-        </div>
-        <ul className="teams-list-container">
-          {iplTeamsList.map(eachTeam => (
-            <TeamCard key={eachTeam.id} teamDetails={eachTeam} />
-          ))}
-        </ul>
+    return (
+      <div>
+        {isLoading ? (
+          <div data-testid="loader" className="ipl-dashboard-loader">
+            <Loader type="Oval" color="#000000" height={50} width={50} />
+          </div>
+        ) : (
+          <div className="app-container">
+            <div className="ipl-dashboard-card">
+              <img
+                className="ipl-logo"
+                src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
+                alt="ipl logo"
+              />
+              <h1 className="ipl-heading">IPL Dashboard</h1>
+            </div>
+            <ul className="teams-list-container">
+              {iplTeamsList.map(eachTeam => (
+                <TeamCard key={eachTeam.id} teamDetails={eachTeam} />
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     )
   }

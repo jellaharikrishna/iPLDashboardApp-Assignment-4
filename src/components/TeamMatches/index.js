@@ -1,4 +1,7 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
+import {PieChart, Pie, Legend, Tooltip, Cell} from 'recharts'
+
 import Loader from 'react-loader-spinner'
 import LatestMatch from '../LatestMatch'
 import MatchCard from '../MatchCard'
@@ -55,6 +58,52 @@ class TeamMatches extends Component {
     })
   }
 
+  findStats = (matchesList, type) => {
+    const countOf = matchesList.filter(each => each.matchStatus === type)
+    return countOf.length
+  }
+
+  renderPieChart = () => {
+    const {recentMatchesList} = this.state
+
+    const winsCount = this.findStats(recentMatchesList, 'Won')
+    const lostCount = this.findStats(recentMatchesList, 'Lost')
+    const drawCount = this.findStats(recentMatchesList, 'Draw')
+
+    const data = [
+      {name: 'Won', value: winsCount},
+      {name: 'Lost', value: lostCount},
+      {name: 'Drawn', value: drawCount},
+    ]
+
+    return (
+      <div className="pie-chart-container">
+        <PieChart width={400} height={400}>
+          <Pie
+            data={data}
+            cx={200}
+            cy={200}
+            labelLine={false}
+            outerRadius={80}
+            fill="#8884d8"
+            dataKey="value"
+          >
+            <Cell key="cell-0" fill="#34cc09" />
+            <Cell key="cell-1" fill="#c20404" />
+            <Cell key="cell-2" fill="#0bf3d0" />
+          </Pie>
+          <Legend
+            iconType="circle"
+            iconSize={18}
+            wrapperStyle={{top: '50px'}}
+          />
+
+          <Tooltip />
+        </PieChart>
+      </div>
+    )
+  }
+
   render() {
     const {
       teamBannerUrl,
@@ -64,25 +113,38 @@ class TeamMatches extends Component {
       isLoading,
     } = this.state
 
-    return isLoading ? (
-      <div data-testid="loader">
-        <Loader type="Oval" color="#ffffff" height={50} width={50} />
-      </div>
-    ) : (
-      <div className={`team-details-container ${bgColorClassname}`}>
-        <img
-          className="teambanner-image"
-          src={teamBannerUrl}
-          alt="team banner"
-        />
-        <p className="latestmatches-heading">Latest Matches</p>
-        <LatestMatch latestMatchDetails={latestMatchDetails} />
-        <ul className="matchcard-list-container">
-          {recentMatchesList.map(eachMatch => (
-            <MatchCard key={eachMatch.id} matchCardDetails={eachMatch} />
-          ))}
-        </ul>
-      </div>
+    return (
+      <>
+        {isLoading ? (
+          <div data-testid="loader" className="ipl-team-match-loader">
+            <Loader type="Oval" color="#000000" height={50} width={50} />
+          </div>
+        ) : (
+          <div className={`team-details-container ${bgColorClassname}`}>
+            <Link to="/" className="team-match-back-btn-link">
+              <button className="team-match-back-btn" type="button">
+                Back
+              </button>
+            </Link>
+            <img
+              className="teambanner-image"
+              src={teamBannerUrl}
+              alt="team banner"
+            />
+            <div className="stats-container">
+              <h1 className="stats-heading">Statistics</h1>
+              {this.renderPieChart()}
+            </div>
+            <p className="latestmatches-heading">Latest Matches</p>
+            <LatestMatch latestMatchDetails={latestMatchDetails} />
+            <ul className="matchcard-list-container">
+              {recentMatchesList.map(eachMatch => (
+                <MatchCard key={eachMatch.id} matchCardDetails={eachMatch} />
+              ))}
+            </ul>
+          </div>
+        )}
+      </>
     )
   }
 }
